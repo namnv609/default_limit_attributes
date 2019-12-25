@@ -9,6 +9,11 @@ Gem::Specification.new do |spec|
   spec.summary = "Add validation of max length for all ActiveRecord attributes"
   spec.license = "MIT"
   spec.homepage = "https://github.com/namnv609/default_limit_attributes"
+
   spec.files = Dir["{lib}/**/*"]
   spec.require_paths = ["lib"]
+
+  spec.add_runtime_dependency "activemodel", ">= 3.0", "< 7.0"
+
+  spec.required_ruby_version = ">= 1.9.3"
 end
