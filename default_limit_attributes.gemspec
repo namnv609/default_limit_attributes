@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
   spec.homepage = "https://github.com/namnv609/default_limit_attributes"
 
-  spec.files = Dir["{lib}/**/*"]
+  spec.files = Dir["{lib}/**/*", "CHANGELOG.md", "LICENSE", "README.md"]
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "activemodel", ">= 3.0", "< 7.0"
