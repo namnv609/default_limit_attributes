@@ -5,6 +5,7 @@ module ActiveModel::Validations::HelperMethods
     before_validation do
       validate_field_types = %i(string)
       except_length_opts = %i(maximum in is within)
+      except_validator_kinds = %i(integrity)
       self_class = self.class
 
       self_class.columns_hash.each do |field, field_opts|
@@ -12,9 +13,12 @@ module ActiveModel::Validations::HelperMethods
 
         is_need_limit = true
         self_class.validators_on(field).each do |validator|
-          next unless validator.kind == :length
+          validator_type = validator.kind
 
-          if except_length_opts.any?{|len_opt| validator.options.key?(len_opt)}
+          next is_need_limit = false if except_validator_kinds.include?(validator_type)
+          is_has_except = except_length_opts.any?{|len_opt| validator.options.key?(len_opt)}
+
+          if validator_type == :length && is_has_except
             is_need_limit = false
             break
           end
